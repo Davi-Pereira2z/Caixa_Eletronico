@@ -1,0 +1,95 @@
+
+Algoritmo "Caixa_Eletronico"
+
+Var
+    saldo, valor_do_saque: inteiro
+    notas100, notas50, notas20, notas10, notas5: inteiro
+    resto: inteiro
+    verificador_valor_invalido: logico
+
+Inicio
+
+    saldo <- 500
+    verificador_valor_invalido <- verdadeiro
+
+    escreva("---------------------------------")
+    escreva("Seja bem-vindo ao Master Bank!")
+    escreva("---------------------------------")
+    escreva("O saldo atual é de: R$", saldo)
+
+    escreva("Digite um valor de saque: ")
+    leia(valor_do_saque)
+
+    enquanto verificador_valor_invalido = verdadeiro faca
+
+        se (valor_do_saque mod 5 == 0) e
+           (valor_do_saque > 0) e
+           (valor_do_saque <= saldo) entao
+
+            saldo <- saldo - valor_do_saque
+
+            escreva("Saldo atualizado para: R$", saldo)
+            escreva("---------------------------------")
+
+            distribuicao_de_notas(valor_do_saque)
+
+            verificador_valor_invalido <- falso
+
+        senao
+
+            escreva("Valor de saque invalido!")
+            escreva("O valor deve ser positivo, multiplo de 5 e menor ou igual ao saldo.")
+            escreva("Tente novamente!")
+
+            escreva("Informe o valor do saque: ")
+            leia(valor_do_saque)
+
+        fimse
+
+    fimenquanto
+
+Fim
+
+
+Funcao distribuicao_de_notas(valor_do_saque: inteiro)
+
+Inicio
+
+    notas100 <- valor_do_saque div 100
+    resto <- valor_do_saque mod 100
+
+    notas50 <- resto div 50
+    resto <- resto mod 50
+
+    notas20 <- resto div 20
+    resto <- resto mod 20
+
+    notas10 <- resto div 10
+    resto <- resto mod 10
+
+    notas5 <- resto div 5
+
+    escreva("Notas entregues:")
+
+    se notas100 > 0 entao
+        escreva(notas100, " nota(s) de R$100")
+    fimse
+
+    se notas50 > 0 entao
+        escreva(notas50, " nota(s) de R$50")
+    fimse
+
+    se notas20 > 0 entao
+        escreva(notas20, " nota(s) de R$20")
+    fimse
+
+    se notas10 > 0 entao
+        escreva(notas10, " nota(s) de R$10")
+    fimse
+
+    se notas5 > 0 entao
+        escreva(notas5, " nota(s) de R$5")
+    fimse
+
+FimFuncao
+
